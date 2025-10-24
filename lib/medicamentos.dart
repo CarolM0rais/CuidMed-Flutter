@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
-// Classe principal da tela de medicamentos
 class MedicamentosPage extends StatefulWidget {
   const MedicamentosPage({super.key});
 
@@ -8,81 +7,74 @@ class MedicamentosPage extends StatefulWidget {
   State<MedicamentosPage> createState() => _MedicamentosPageState();
 }
 
-// Classe responsável pela lógica e estado da tela
 class _MedicamentosPageState extends State<MedicamentosPage> {
-  // Controladores para os campos de texto
+  // Controladores para capturar o texto digitado nos campos
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController horarioController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Cor de fundo da tela
-
+      // Estrutura básica da tela
       appBar: AppBar(
-        title: const Text("CuidMed - Controle de Medicações"),
+        title: const Text("CuidMed - Controle de Medicações"), // Novo título
         backgroundColor: const Color.fromARGB(255, 65, 145, 170),
       ),
 
-      // Centraliza o conteúdo no meio da tela
       body: Center(
+        // Centraliza todo o conteúdo
         child: Container(
-          width: 350,
-          padding: const EdgeInsets.all(30), // Espaçamento interno
+          // Mesmo estilo da tela inicial (login)
+          width: 400,
+          height: 300,
+          padding: const EdgeInsets.all(40.0),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 215, 243, 246), // Cor do container
-            borderRadius: BorderRadius.circular(25), // Bordas arredondadas
-            boxShadow: const [
-              // Sombra ao redor da caixa
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 8,
-                offset: Offset(0, 4),
-              ),
-            ],
+            color: const Color.fromARGB(255, 215, 243, 246),
+            borderRadius: BorderRadius.circular(25),
           ),
 
-          // Organiza os elementos verticalmente
+          // Mesma estrutura de organização
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Campo para o nome do medicamento
+              // Campo de entrada para o nome do medicamento
               TextFormField(
                 controller: nomeController,
                 decoration: const InputDecoration(
                   labelText: "Nome do medicamento:",
                   border: OutlineInputBorder(),
-                  icon: Icon(Icons.medication), // Ícone de remédio
+                  icon: Icon(Icons.medication), // Ícone trocado
                 ),
               ),
               const SizedBox(height: 15),
 
-              // Campo para o horário de uso
+              // Campo de entrada para o horário
               TextFormField(
                 controller: horarioController,
                 decoration: const InputDecoration(
                   labelText: "Horário de uso:",
                   border: OutlineInputBorder(),
-                  icon: Icon(Icons.access_time), // Ícone de relógio
+                  icon: Icon(Icons.access_time), // Ícone trocado
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
 
-              // Botão de salvar
+              // Botão para salvar o medicamento
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 65, 145, 170),
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
 
-                // Função do botão
+                // Função executada ao clicar no botão
                 onPressed: () {
-                  // Verifica se algum campo está vazio
-                  if (nomeController.text.isEmpty || horarioController.text.isEmpty) {
+                  // Validação dos campos
+                  if (nomeController.text.isEmpty ||
+                      horarioController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text("Preencha todos os campos!"),
@@ -94,13 +86,12 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          "Medicamento ${nomeController.text} cadastrado com sucesso!",
-                        ),
+                            "Medicamento ${nomeController.text} cadastrado com sucesso!"),
                         backgroundColor: Colors.green,
                       ),
                     );
 
-                    // Limpa os campos após salvar
+                    // Limpa os campos depois de salvar
                     nomeController.clear();
                     horarioController.clear();
                   }
